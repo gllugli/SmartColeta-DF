@@ -2,4 +2,4 @@
 
 ### Colaboradores
 
-Arthur de Jesus Lira Rojas - @arthurfuturo16@gmail.com - PO [Project Owner]
+Arthur de Jesus Lira Rojas - arthurfuturo16@gmail.com - PO [Project Owner]
