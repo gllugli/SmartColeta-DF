@@ -3,4 +3,5 @@
 ### Colaboradores
 
 Arthur de Jesus Lira Rojas - arthurfuturo16@gmail.com - PO [Project Owner] \
-Gabriel Larsão Lugli - gabriel.lugli@sempreceub.com - DEV [Desenvolvedor]
+Gabriel Larsão Lugli - gabriel.lugli@sempreceub.com - DEV [Desenvolvedor] \
+João Pedro Roriz Costa - joaop.roriz31@sempreceub.com - DBA [Adm Banco de Dados]
