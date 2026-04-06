@@ -1,9 +1,23 @@
-# Projeto_Integrador_1
+<div align="center">
+  <h1>🚛 SmartColeta-DF: Otimização de rotas de coleta de lixo</h1>
+  <h5>Projeto feito para a disciplina Projeto Integrador I do Centro Universitário de Brasília</h5>
+</div>
 
-### Colaboradores
+## 1. ♻️ Descrição do Projeto
 
-Arthur de Jesus Lira Rojas - arthurfuturo16@gmail.com - PO [Project Owner] \
-Gabriel Larsão Lugli - gabriel.lugli@sempreceub.com - DEV [Desenvolvedor] \
-João Pedro Roriz Costa - joaop.roriz31@sempreceub.com - DBA [Adm Banco de Dados] \
-Pedro Augusto Lourenço Da Silva - pedro.lourenco0@sempreceub.com - Arquiteto \
-Pedro Felizardo Barbosa - pfeliz09@gmail.com/pedro.felizardo@sempreceub.com - Scrum Master
+O SmartColeta-DF é um sistema web desenvolvido para apoiar a tomada de decisões de empresas responsáveis pela coleta e descarte de resíduos sólidos no Distrito Federal, com o objetivo de otimizar as rotas e contribuir para a redução de custos operacionais.
+
+A plataforma permite que gestores planejem suas rotas com base em dados coletados, utilizando informações como o volume estimado de resíduos em determinadas áreas e a ocorrência de eventos na região, fatores que impactam diretamente a eficiência logística das operações. Seu uso é contínuo no contexto do planejamento operacional, possibilitando maior previsibilidade e melhor alocação de recursos.
+
+Dessa forma, o sistema busca aumentar a eficiência das operações por meio do uso estratégico de dados, promovendo decisões mais assertivas e fundamentadas. Além disso, o projeto se alinha ao Objetivo de Desenvolvimento Sustentável 11 (ODS 11) – Cidades e Comunidades Sustentáveis, ao contribuir para a melhoria da gestão de resíduos urbanos, a redução de impactos ambientais e a promoção de cidades mais eficientes e sustentáveis.
+
+
+## 👥 2. Membros da Equipe e Papéis
+
+| Membro                | Papel                                      |
+| --------------------- | ------------------------------------------ |
+| 👑 **[Arthur de Jesus](https://github.com/BonnBonn-stack)** | **Project Owner** |
+| ✒ **[Pedro Felizardo](https://github.com/pedro-felizardo)** | **Scrum Master** |
+| 🗃️ **[Pedro Augusto](https://github.com/Augusto0l)** | **Arquiteto do Sistema** |
+| 💻 **[João Pedro Roriz](https://github.com/JPedra121)** | **Administrador de Banco de Dados** |
+| 💻 **[Gabriel Lugli](https://github.com/gllugli)** | **Desenvolvedor Full-Stack** |
