@@ -5,4 +5,4 @@
 
 <br>
 
-Segue link para acesso: [Link para o Wireframe](https://www.figma.com/make/gXlC7rIV7EElmD8eX1zvbN/Dashboard-Wireframe-for-SmartColeta?fullscreen=1&t=48x3okcnZGahNdw9-1)
+Segue link para acesso: [Link para o Wireframe]([https://www.figma.com/make/gXlC7rIV7EElmD8eX1zvbN/Dashboard-Wireframe-for-SmartColeta?fullscreen=1&t=48x3okcnZGahNdw9-1](https://www.figma.com/make/gXlC7rIV7EElmD8eX1zvbN/Dashboard-Wireframe-for-SmartColeta?fullscreen=1&t=F6m4rfCqi1QIuAtn-1&code-node-id=0-9))
