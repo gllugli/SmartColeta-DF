@@ -1,0 +1,380 @@
+{
+  "smartcoleta_df": {
+    "descricao": "Modelo NoSQL para o dashboard SmartColeta-DF, voltado ao monitoramento de volume de lixo, pontos de coleta, rotas, custos e indicadores por região administrativa.",
+
+    "colecoes": {
+      "regioes": [
+        {
+          "_id": "reg_001",
+          "nome": "Ceilândia",
+          "descricao": "Região administrativa do Distrito Federal",
+          "resumo": {
+            "volume_produzido_t": 850,
+            "volume_coletado_t": 820,
+            "pontos_coleta": 48,
+            "rotas": 12,
+            "custo_rotas": 285000.00
+          },
+          "pontos_coleta": [
+            {
+              "id_ponto": "pt_001",
+              "nome": "Ponto Central Ceilândia",
+              "endereco": "QNM 01 - Ceilândia",
+              "latitude": -15.8123,
+              "longitude": -48.1045,
+              "status": "ativo"
+            },
+            {
+              "id_ponto": "pt_002",
+              "nome": "Ponto Norte Ceilândia",
+              "endereco": "QNN 10 - Ceilândia",
+              "latitude": -15.8050,
+              "longitude": -48.1120,
+              "status": "ativo"
+            }
+          ],
+          "historico_mensal": [
+            {
+              "ano": 2026,
+              "mes": "Jan",
+              "volume_t": 3100
+            },
+            {
+              "ano": 2026,
+              "mes": "Fev",
+              "volume_t": 3000
+            },
+            {
+              "ano": 2026,
+              "mes": "Mar",
+              "volume_t": 3300
+            },
+            {
+              "ano": 2026,
+              "mes": "Abr",
+              "volume_t": 3200
+            },
+            {
+              "ano": 2026,
+              "mes": "Mai",
+              "volume_t": 3290
+            }
+          ]
+        },
+        {
+          "_id": "reg_002",
+          "nome": "Taguatinga",
+          "descricao": "Região administrativa do Distrito Federal",
+          "resumo": {
+            "volume_produzido_t": 720,
+            "volume_coletado_t": 700,
+            "pontos_coleta": 42,
+            "rotas": 10,
+            "custo_rotas": 240000.00
+          },
+          "pontos_coleta": [
+            {
+              "id_ponto": "pt_003",
+              "nome": "Ponto Central Taguatinga",
+              "endereco": "C 12 - Taguatinga",
+              "latitude": -15.8320,
+              "longitude": -48.0560,
+              "status": "ativo"
+            }
+          ],
+          "historico_mensal": [
+            {
+              "ano": 2026,
+              "mes": "Jan",
+              "volume_t": 2900
+            },
+            {
+              "ano": 2026,
+              "mes": "Fev",
+              "volume_t": 2850
+            },
+            {
+              "ano": 2026,
+              "mes": "Mar",
+              "volume_t": 3150
+            },
+            {
+              "ano": 2026,
+              "mes": "Abr",
+              "volume_t": 3050
+            },
+            {
+              "ano": 2026,
+              "mes": "Mai",
+              "volume_t": 3100
+            }
+          ]
+        }
+      ],
+
+      "rotas_coleta": [
+        {
+          "_id": "rota_001",
+          "nome": "Rota Ceilândia Centro",
+          "regiao": {
+            "id_regiao": "reg_001",
+            "nome": "Ceilândia"
+          },
+          "tipo_coleta": {
+            "id_tipo": "tipo_001",
+            "nome": "Coleta convencional"
+          },
+          "status": "ativa",
+          "distancia_km": 18.5,
+          "custo_estimado": 45000.00,
+          "trajeto": [
+            {
+              "ordem": 1,
+              "latitude": -15.8123,
+              "longitude": -48.1045
+            },
+            {
+              "ordem": 2,
+              "latitude": -15.8050,
+              "longitude": -48.1120
+            },
+            {
+              "ordem": 3,
+              "latitude": -15.7990,
+              "longitude": -48.1180
+            }
+          ],
+          "pontos_atendidos": [
+            {
+              "id_ponto": "pt_001",
+              "nome": "Ponto Central Ceilândia",
+              "ordem_visita": 1
+            },
+            {
+              "id_ponto": "pt_002",
+              "nome": "Ponto Norte Ceilândia",
+              "ordem_visita": 2
+            }
+          ]
+        },
+        {
+          "_id": "rota_002",
+          "nome": "Rota Taguatinga Sul",
+          "regiao": {
+            "id_regiao": "reg_002",
+            "nome": "Taguatinga"
+          },
+          "tipo_coleta": {
+            "id_tipo": "tipo_002",
+            "nome": "Coleta seletiva"
+          },
+          "status": "ativa",
+          "distancia_km": 14.2,
+          "custo_estimado": 38000.00,
+          "trajeto": [
+            {
+              "ordem": 1,
+              "latitude": -15.8320,
+              "longitude": -48.0560
+            },
+            {
+              "ordem": 2,
+              "latitude": -15.8400,
+              "longitude": -48.0600
+            }
+          ],
+          "pontos_atendidos": [
+            {
+              "id_ponto": "pt_003",
+              "nome": "Ponto Central Taguatinga",
+              "ordem_visita": 1
+            }
+          ]
+        }
+      ],
+
+      "registros_coleta": [
+        {
+          "_id": "registro_001",
+          "data_coleta": "2026-05-10",
+          "ano": 2026,
+          "mes": "Maio",
+          "regiao": {
+            "id_regiao": "reg_001",
+            "nome": "Ceilândia"
+          },
+          "ponto_coleta": {
+            "id_ponto": "pt_001",
+            "nome": "Ponto Central Ceilândia"
+          },
+          "rota": {
+            "id_rota": "rota_001",
+            "nome": "Rota Ceilândia Centro"
+          },
+          "tipo_coleta": {
+            "id_tipo": "tipo_001",
+            "nome": "Coleta convencional"
+          },
+          "volume_toneladas": 120,
+          "custo_coleta": 18500.00,
+          "observacao": "Coleta realizada dentro do período previsto."
+        },
+        {
+          "_id": "registro_002",
+          "data_coleta": "2026-05-11",
+          "ano": 2026,
+          "mes": "Maio",
+          "regiao": {
+            "id_regiao": "reg_002",
+            "nome": "Taguatinga"
+          },
+          "ponto_coleta": {
+            "id_ponto": "pt_003",
+            "nome": "Ponto Central Taguatinga"
+          },
+          "rota": {
+            "id_rota": "rota_002",
+            "nome": "Rota Taguatinga Sul"
+          },
+          "tipo_coleta": {
+            "id_tipo": "tipo_002",
+            "nome": "Coleta seletiva"
+          },
+          "volume_toneladas": 95,
+          "custo_coleta": 14200.00,
+          "observacao": "Coleta seletiva registrada no dashboard."
+        }
+      ],
+
+      "consultas_dashboard": [
+        {
+          "_id": "consulta_001",
+          "usuario": {
+            "id_usuario": "user_001",
+            "nome": "Administrador"
+          },
+          "filtros_aplicados": {
+            "ano": 2026,
+            "mes": "Maio",
+            "regiao_administrativa": "Todas",
+            "tipo_coleta": "Todas"
+          },
+          "indicadores": {
+            "volume_total_lixo_t": 3290,
+            "pontos_coleta": 248,
+            "rotas_cadastradas": 52,
+            "custo_estimado": 1245000.00
+          },
+          "grafico_volume_por_regiao": [
+            {
+              "regiao": "Ceilândia",
+              "volume_t": 850
+            },
+            {
+              "regiao": "Taguatinga",
+              "volume_t": 720
+            },
+            {
+              "regiao": "Samambaia",
+              "volume_t": 650
+            },
+            {
+              "regiao": "Plano Piloto",
+              "volume_t": 580
+            },
+            {
+              "regiao": "Gama",
+              "volume_t": 490
+            }
+          ],
+          "grafico_volume_por_mes": [
+            {
+              "mes": "Jan",
+              "volume_t": 3100
+            },
+            {
+              "mes": "Fev",
+              "volume_t": 3000
+            },
+            {
+              "mes": "Mar",
+              "volume_t": 3300
+            },
+            {
+              "mes": "Abr",
+              "volume_t": 3200
+            },
+            {
+              "mes": "Mai",
+              "volume_t": 3290
+            },
+            {
+              "mes": "Jun",
+              "volume_t": 3450
+            },
+            {
+              "mes": "Jul",
+              "volume_t": 3350
+            },
+            {
+              "mes": "Ago",
+              "volume_t": 3420
+            },
+            {
+              "mes": "Set",
+              "volume_t": 3300
+            },
+            {
+              "mes": "Out",
+              "volume_t": 3550
+            },
+            {
+              "mes": "Nov",
+              "volume_t": 3600
+            },
+            {
+              "mes": "Dez",
+              "volume_t": 3700
+            }
+          ],
+          "ranking_regioes": [
+            {
+              "posicao": 1,
+              "regiao": "Ceilândia",
+              "volume_t": 850
+            },
+            {
+              "posicao": 2,
+              "regiao": "Taguatinga",
+              "volume_t": 720
+            },
+            {
+              "posicao": 3,
+              "regiao": "Samambaia",
+              "volume_t": 650
+            },
+            {
+              "posicao": 4,
+              "regiao": "Plano Piloto",
+              "volume_t": 580
+            },
+            {
+              "posicao": 5,
+              "regiao": "Gama",
+              "volume_t": 490
+            }
+          ],
+          "resumo_regiao_selecionada": {
+            "regiao": "Ceilândia",
+            "volume_produzido_t": 850,
+            "volume_coletado_t": 820,
+            "pontos_coleta": 48,
+            "rotas": 12,
+            "custo_rotas": 285000.00
+          },
+          "data_geracao": "2026-05-11T08:40:00Z"
+        }
+      ]
+    }
+  }
+}
