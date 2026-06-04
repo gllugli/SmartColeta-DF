@@ -153,10 +153,12 @@ def extrair_blocos_mensais(nome_aba, df):
         meses_cols = {col: normalizar_mes(row[col]) for col in df.columns}
         meses_cols = {col: mes for col, mes in meses_cols.items() if mes}
 
-        if nome_aba == "Remocao_PEV_P64" and i == 0:
-            colunas_mensais = [c for c in df.columns if c >= 2 and c % 3 == 2][:12]
-            meses_cols = {col: str(idx + 1).zfill(2) for idx, col in enumerate(colunas_mensais)}
-            indicador_atual = "Remoção PEV (t)"
+        # Para a aba Remocao_PEV_P64:
+        # Apenas definimos o indicador, sem forçar pulos de colunas.
+        # Assim ele lê 2023, 2024 e 2025 de forma natural!
+        if nome_aba == "Remocao_PEV_P64":
+            if not indicador_atual or indicador_atual == "Indicador não identificado":
+                indicador_atual = "Remoção PEV (t)"
 
         if len(meses_cols) >= 2:
             primeira_col_mes = min(meses_cols.keys())
@@ -165,15 +167,29 @@ def extrair_blocos_mensais(nome_aba, df):
             if cabecalho and cabecalho.upper() not in {"MÊS", "MES", "UNIDADE", "TOTAL_REMOCAO_PEV(T)"}:
                 indicador_atual = cabecalho
 
-            j = i + 1 if nome_aba != "Remocao_PEV_P64" else i
+            j = i + 1
             while j < len(df):
                 prox = df.iloc[j]
                 prox_meses = {col: normalizar_mes(prox[col]) for col in df.columns}
                 prox_meses = {col: mes for col, mes in prox_meses.items() if mes}
-                if j != i and len(prox_meses) >= 2: break
+                
+                if j != i and len(prox_meses) >= 2: 
+                    break
                 
                 if linha_tem_valor_numerico(prox, list(meses_cols.keys())):
+                    
+                    # Pegamos o ano da linha atual ou do cabeçalho
                     ano = ano_da_linha(prox) or ano_da_linha(row)
+                    
+                    # Busca genérica e segura pelo ano nas linhas acima (resolve Lotes e outras abas, 
+                    # útil caso o ano fique como um título de tabela acima dos meses)
+                    if not ano:
+                        for r in range(j, max(-1, j - 15), -1):
+                            ano_encontrado = ano_da_linha(df.iloc[r])
+                            if ano_encontrado:
+                                ano = ano_encontrado
+                                break
+
                     categoria = primeiro_texto(prox, [c for c in df.columns if c < primeira_col_mes])
 
                     complemento = []
@@ -182,11 +198,14 @@ def extrair_blocos_mensais(nome_aba, df):
                         futura = df.iloc[k]
                         futura_meses = {col: normalizar_mes(futura[col]) for col in df.columns}
                         futura_meses = {col: mes for col, mes in futura_meses.items() if mes}
-                        if len(futura_meses) >= 2 or linha_tem_valor_numerico(futura, list(meses_cols.keys())): break
+                        if len(futura_meses) >= 2 or linha_tem_valor_numerico(futura, list(meses_cols.keys())): 
+                            break
                         txt = primeiro_texto(futura, [c for c in df.columns if c < primeira_col_mes])
                         if txt: complemento.append(txt)
                         k += 1
-                    if complemento and categoria: categoria = " ".join([categoria] + complemento)
+                    
+                    if complemento and categoria: 
+                        categoria = " ".join([categoria] + complemento)
 
                     for col, mes in meses_cols.items():
                         valor = numero_brasileiro_para_float(prox[col])
@@ -427,6 +446,10 @@ def executar_etl():
         base_mensal["indicador"] = base_mensal["indicador"].apply(texto_limpo)
         base_mensal["categoria"] = base_mensal["categoria"].apply(texto_limpo)
         base_mensal["valor"] = pd.to_numeric(base_mensal["valor"], errors="coerce")
+
+        palavras_lixo = '(?i)^total|^média|^media'
+        base_mensal = base_mensal[~base_mensal['categoria'].astype(str).str.contains(palavras_lixo, na=False)]
+        
         base_mensal["data_referencia"] = pd.to_datetime(base_mensal["data_referencia"], errors="coerce")
         base_mensal = base_mensal.drop_duplicates()
         base_mensal = aplicar_filtros_feedback(base_mensal)
