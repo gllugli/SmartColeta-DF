@@ -54,6 +54,7 @@ CATEGORIAS_CUSTOS_LOTES_REMOVER = {
     "Unidade de Transbordo de Rejeitos e/ou Resíduos - Asa Sul e Sobradinho",
     "Unidade de Transbordo de Rejeitos e/ou Resíduos",
     "Varrição manual de vias", "Varrição mecanizada de vias",
+    "Catação em Área Verde",
 }
 
 CATEGORIAS_CUSTOS_URE_ASB_REMOVER = {
@@ -153,12 +154,16 @@ def extrair_blocos_mensais(nome_aba, df):
         meses_cols = {col: normalizar_mes(row[col]) for col in df.columns}
         meses_cols = {col: mes for col, mes in meses_cols.items() if mes}
 
-        # Para a aba Remocao_PEV_P64:
-        # Apenas definimos o indicador, sem forçar pulos de colunas.
-        # Assim ele lê 2023, 2024 e 2025 de forma natural!
-        if nome_aba == "Remocao_PEV_P64":
+        # Definição dos indicadores para as novas abas de PEV
+        if nome_aba == "coleta_RCC_PEV":
             if not indicador_atual or indicador_atual == "Indicador não identificado":
-                indicador_atual = "Remoção PEV (t)"
+                indicador_atual = "Coleta RCC PEV (t)"
+        elif nome_aba == "coleta_podas_PEV":
+            if not indicador_atual or indicador_atual == "Indicador não identificado":
+                indicador_atual = "Coleta Podas PEV (t)"
+        elif nome_aba == "coleta_volumosos_PEV":
+            if not indicador_atual or indicador_atual == "Indicador não identificado":
+                indicador_atual = "Coleta Volumosos PEV (t)"
 
         if len(meses_cols) >= 2:
             primeira_col_mes = min(meses_cols.keys())
@@ -181,8 +186,7 @@ def extrair_blocos_mensais(nome_aba, df):
                     # Pegamos o ano da linha atual ou do cabeçalho
                     ano = ano_da_linha(prox) or ano_da_linha(row)
                     
-                    # Busca genérica e segura pelo ano nas linhas acima (resolve Lotes e outras abas, 
-                    # útil caso o ano fique como um título de tabela acima dos meses)
+                    # Busca genérica e segura pelo ano nas linhas acima
                     if not ano:
                         for r in range(j, max(-1, j - 15), -1):
                             ano_encontrado = ano_da_linha(df.iloc[r])
