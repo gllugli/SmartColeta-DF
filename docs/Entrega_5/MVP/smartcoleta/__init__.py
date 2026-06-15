@@ -1,0 +1,1 @@
+"""SmartColeta-DF dashboard package."""

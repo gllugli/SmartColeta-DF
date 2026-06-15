@@ -1,0 +1,524 @@
+        :root {
+            --bg: #f6f7f9;
+            --card: #ffffff;
+            --card-soft: #f9fafb;
+            --text: #0f2442;
+            --muted: #50617a;
+            --border: #e3e8ef;
+            --line: #d8dee8;
+            --blue: #2563eb;
+            --green: #10b981;
+            --shadow: 0 1px 2px rgba(15, 36, 66, 0.08), 0 8px 26px rgba(15, 36, 66, 0.04);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--text);
+            font-family: "Segoe UI", Inter, Arial, sans-serif;
+        }
+
+        button,
+        select {
+            font: inherit;
+        }
+
+        .page {
+            width: min(100%, 1920px);
+            margin: 0 auto;
+            padding: 30px;
+        }
+
+        .panel,
+        .metric-card,
+        .content-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            padding: 26px 24px;
+        }
+
+        .header h1 {
+            margin: 0 0 6px;
+            font-size: 30px;
+            line-height: 1.15;
+            letter-spacing: 0;
+        }
+
+        .header p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 15px;
+        }
+
+        .header-meta {
+            margin-top: 8px;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .primary-action {
+            min-height: 42px;
+            border: 0;
+            border-radius: 7px;
+            padding: 0 24px;
+            background: var(--blue);
+            color: #fff;
+            font-weight: 700;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .filters {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(160px, 1fr));
+            gap: 16px;
+            margin-top: 22px;
+            padding: 26px 24px 24px;
+        }
+
+        .field label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .field select {
+            width: 100%;
+            height: 42px;
+            border: 1px solid #cbd5e1;
+            border-radius: 7px;
+            background: #fff;
+            padding: 0 20px;
+            color: #111827;
+        }
+
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(180px, 1fr));
+            gap: 22px;
+            margin-top: 22px;
+        }
+
+        .metric-card {
+            min-height: 118px;
+            padding: 26px 24px;
+            position: relative;
+        }
+
+        .metric-card.has-tooltip {
+            cursor: help;
+        }
+
+        .metric-card.has-tooltip:focus {
+            outline: 3px solid rgba(37, 99, 235, 0.22);
+            outline-offset: 3px;
+        }
+
+        .metric-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .metric-card > strong {
+            display: block;
+            margin-top: 14px;
+            color: #0b1f3a;
+            font-size: 28px;
+            line-height: 1.08;
+            letter-spacing: 0;
+        }
+
+        .metric-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            font-size: 25px;
+            font-weight: 800;
+        }
+
+        .metric-icon.green {
+            color: #00a65a;
+        }
+
+        .metric-icon.blue {
+            color: var(--blue);
+        }
+
+        .metric-tooltip {
+            position: absolute;
+            z-index: 20;
+            top: calc(100% - 8px);
+            left: 24px;
+            right: 24px;
+            padding: 14px 16px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: #ffffff;
+            box-shadow: 0 12px 30px rgba(15, 36, 66, 0.16);
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(8px);
+            transition: opacity 160ms ease, transform 160ms ease, visibility 160ms ease;
+            visibility: hidden;
+        }
+
+        .metric-card.has-tooltip:hover .metric-tooltip,
+        .metric-card.has-tooltip:focus .metric-tooltip {
+            opacity: 1;
+            transform: translateY(0);
+            visibility: visible;
+        }
+
+        .metric-tooltip-title {
+            display: block;
+            margin-bottom: 10px;
+            color: var(--muted);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0;
+            text-transform: uppercase;
+        }
+
+        .metric-tooltip-list {
+            display: grid;
+            gap: 7px;
+        }
+
+        .metric-tooltip-row {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto;
+            gap: 14px;
+            align-items: baseline;
+            color: var(--text);
+            font-size: 13px;
+            line-height: 1.3;
+        }
+
+        .metric-tooltip-row.is-nested {
+            grid-template-columns: minmax(0, 1fr);
+            padding-left: 14px;
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.38;
+        }
+
+        .metric-tooltip-row span {
+            min-width: 0;
+            overflow-wrap: anywhere;
+        }
+
+        .metric-tooltip-row strong {
+            display: inline;
+            margin: 0;
+            color: var(--text);
+            font-size: 13px;
+            line-height: 1.3;
+            text-align: right;
+        }
+
+        .metric-tooltip-empty {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 22px;
+            margin-top: 22px;
+        }
+
+        .content-card {
+            min-height: 322px;
+            padding: 26px 24px;
+        }
+
+        .content-card.tall {
+            min-height: 390px;
+        }
+
+        .content-card h2 {
+            margin: 0 0 6px;
+            font-size: 18px;
+            line-height: 1.25;
+            letter-spacing: 0;
+        }
+
+        .card-context {
+            display: block;
+            margin-bottom: 14px;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .chart {
+            display: block;
+            width: 100%;
+            height: auto;
+            min-height: 260px;
+        }
+
+        .grid-line {
+            stroke: #dbe2ec;
+            stroke-width: 1;
+            stroke-dasharray: 3 4;
+        }
+
+        .axis-line {
+            stroke: #9aa4b2;
+            stroke-width: 1.2;
+        }
+
+        .axis-label {
+            fill: #475569;
+            font-size: 12px;
+        }
+
+        .value-label {
+            fill: #0f2442;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .strong-label {
+            fill: #1e293b;
+            font-weight: 700;
+        }
+
+        .bar {
+            fill: var(--green);
+        }
+
+        .bar-blue {
+            fill: var(--blue);
+        }
+
+        .bar-bg {
+            fill: #eef2f7;
+        }
+
+        .chart-bar-group.has-chart-tooltip {
+            cursor: help;
+            outline: none;
+        }
+
+        .chart-bar-group.has-chart-tooltip:hover .bar,
+        .chart-bar-group.has-chart-tooltip:focus .bar {
+            fill: #0ea672;
+            stroke: #087f5b;
+            stroke-width: 1.4;
+        }
+
+        .chart-bar-hit {
+            fill: transparent;
+            pointer-events: all;
+        }
+
+        .chart-tooltip {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 160ms ease, visibility 160ms ease;
+            visibility: hidden;
+        }
+
+        .chart-bar-group.has-chart-tooltip:hover .chart-tooltip,
+        .chart-bar-group.has-chart-tooltip:focus .chart-tooltip {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .chart-tooltip-panel {
+            fill: #ffffff;
+            stroke: var(--border);
+            stroke-width: 1;
+            filter: drop-shadow(0 10px 18px rgba(15, 36, 66, 0.18));
+        }
+
+        .chart-tooltip-title {
+            fill: var(--muted);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0;
+        }
+
+        .chart-tooltip-text {
+            fill: var(--text);
+            font-size: 12px;
+        }
+
+        .trend-line {
+            fill: none;
+            stroke: #3b82f6;
+            stroke-width: 2.2;
+        }
+
+        .trend-point {
+            fill: #3b82f6;
+        }
+
+        .ranking {
+            display: grid;
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        .ranking-row {
+            display: grid;
+            grid-template-columns: 42px 1fr auto;
+            align-items: center;
+            gap: 16px;
+            min-height: 44px;
+            padding: 0 16px;
+            border-radius: 7px;
+            background: var(--card-soft);
+            color: var(--text);
+        }
+
+        .ranking-row strong,
+        .ranking-row em {
+            font-size: 15px;
+            font-style: normal;
+        }
+
+        .summary {
+            display: grid;
+            gap: 0;
+            margin-top: 18px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .summary-row {
+            display: grid;
+            grid-template-columns: minmax(120px, 1fr) auto;
+            gap: 18px;
+            min-height: 46px;
+            align-items: center;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .summary-row span {
+            color: var(--muted);
+        }
+
+        .summary-row strong {
+            text-align: right;
+        }
+
+        .progress-list {
+            display: grid;
+            gap: 18px;
+            padding-top: 10px;
+        }
+
+        .progress-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+
+        .progress-track {
+            height: 12px;
+            overflow: hidden;
+            border-radius: 999px;
+            background: #eef2f7;
+        }
+
+        .progress-track span {
+            display: block;
+            height: 100%;
+            border-radius: inherit;
+            background: linear-gradient(90deg, var(--green), #38bdf8);
+        }
+
+        .empty-state,
+        .empty-row {
+            display: grid;
+            place-content: center;
+            min-height: 220px;
+            border-radius: 7px;
+            background: var(--card-soft);
+            color: var(--muted);
+            text-align: center;
+            padding: 24px;
+        }
+
+        .empty-state strong {
+            display: block;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+
+        .empty-row {
+            min-height: 70px;
+        }
+
+        @media (max-width: 1200px) {
+            .filters {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 1100px) {
+            .metrics,
+            .grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 900px) {
+            .filters {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 720px) {
+            .page {
+                padding: 16px;
+            }
+
+            .header {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .primary-action {
+                width: 100%;
+            }
+
+            .filters,
+            .metrics,
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                font-size: 25px;
+            }
+
+            .metric-card > strong {
+                font-size: 25px;
+            }
+        }

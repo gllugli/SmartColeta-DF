@@ -7,7 +7,7 @@
 
 O SmartColeta-DF é um sistema web desenvolvido para apoiar a tomada de decisões de empresas responsáveis pela coleta e descarte de resíduos sólidos no Distrito Federal, com o objetivo de colaborar na gestão das coletas, a ajudar na otimização e gestão de rotas e contribuir para a redução de custos operacionais.
 
-A plataforma permite que gestores planejem suas rotas com base em dados coletados, utilizando informações como o volume de resíduos em determinadas áreas, mapas com pontos e rotas de coleta, "ranking" com as regiões com a maior produção de resíduos e resumos da região (por meio de filtro). Fatores que impactam diretamente a eficiência logística das operações. Seu uso é contínuo no contexto do planejamento operacional, possibilitando maior previsibilidade e melhor alocação de recursos.
+A plataforma permite que gestores planejem suas rotas com base em dados coletados, utilizando informações como volume de resíduos por região, pontos de coleta, indicadores de custo, "ranking" com as regiões com a maior produção de resíduos e resumos da região por meio de filtros. Fatores que impactam diretamente a eficiência logística das operações. Seu uso é contínuo no contexto do planejamento operacional, possibilitando maior previsibilidade e melhor alocação de recursos.
 
 Dessa forma, o sistema busca aumentar a eficiência das operações por meio do uso estratégico de dados, promovendo decisões mais assertivas e fundamentadas. Além disso, o projeto se alinha ao Objetivo de Desenvolvimento Sustentável 11 (ODS 11) – Cidades e Comunidades Sustentáveis, ao contribuir para a melhoria da gestão de resíduos urbanos, a redução de impactos ambientais e a promoção de cidades mais eficientes e sustentáveis.
 
@@ -19,8 +19,23 @@ Para a primeira fase deste projeto, nosso foco é a pesquisa e análise de dados
 🔍 Analisar os dados: Utilizar o conceito do dashboard para identificar possíveis variáveis que colaborem com a decisão da rota para uma otimização da coleta. \
 💡 Justificar a Solução: Usar a análise de dados como embasamento para definir os requisitos e as funcionalidades da plataforma "SmartColeta-DF" a ser desenvolvida nas próximas etapas do projeto integrador.
 
+## 🖥️ 3. Dashboard dinâmico
 
-## 👥 3. Membros da Equipe e Papéis
+Instale as dependências:
+
+```bash
+pip install -r requirements.txt
+```
+
+Para executar:
+
+```bash
+python docs/Entrega_5/MVP/app.py
+```
+
+Depois, acesse `http://127.0.0.1:8000`. Os filtros recalculam os indicadores e gráficos com base na planilha.
+
+## 👥 4. Membros da Equipe e Papéis
 
 | Membro                | Papel                                      |
 | --------------------- | ------------------------------------------ |
