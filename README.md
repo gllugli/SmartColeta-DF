@@ -63,7 +63,7 @@ Depois, acesse `http://127.0.0.1:8000`. Os filtros recalculam os indicadores e g
 Execute os testes com:
 
 ```bash
-python -m unittest
+python -m unittest discover -s tests
 ```
 
 ## 👥 4. Membros da Equipe e Papéis
