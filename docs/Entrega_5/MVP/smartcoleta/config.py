@@ -8,7 +8,7 @@ PACKAGE_DIR = Path(__file__).resolve().parent
 APP_DIR = PACKAGE_DIR.parent
 DELIVERY_DIR = APP_DIR.parent
 PROJECT_ROOT = DELIVERY_DIR.parent.parent
-STATIC_DIR = APP_DIR / "static"
+STATIC_DIR = PROJECT_ROOT / "public" / "static"
 DEFAULT_DATA_PATH = PROJECT_ROOT / "docs" / "Entrega_3" / "Base_dados_SMART_tratada.xlsx"
 DATA_PATH = Path(os.environ.get("SMARTCOLETA_DATA_PATH", DEFAULT_DATA_PATH)).expanduser()
 

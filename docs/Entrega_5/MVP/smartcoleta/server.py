@@ -14,7 +14,7 @@ class DashboardHandler(BaseHTTPRequestHandler):
     def do_GET(self) -> None:
         parsed = urlparse(self.path)
 
-        if parsed.path in {"/", "/index.html"}:
+        if parsed.path in {"/", "/index.html", "/api/index", "/api/index/"}:
             try:
                 self._send_html(render_dashboard(parse_qs(parsed.query)))
             except Exception as error:  # noqa: BLE001 - page should show data loading failures.

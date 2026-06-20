@@ -1,0 +1,10 @@
+_site/
+.github/
+.vscode/
+__pycache__/
+**/__pycache__/
+**/*.pyc
+docs/**/*.pdf
+docs/**/*.docx
+docs/Entrega_3/Base_dados_SMART_att.xlsx
+

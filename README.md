@@ -21,6 +21,10 @@ Para a primeira fase deste projeto, nosso foco é a pesquisa e análise de dados
 
 ## 🖥️ 3. Dashboard dinâmico
 
+O MVP roda como um dashboard Python dinâmico. O servidor usa a planilha tratada em `docs/Entrega_3/Base_dados_SMART_tratada.xlsx`, aplica os filtros recebidos pela URL e renderiza os indicadores e gráficos no HTML. Os dados ficam em cache em memória por instância e são recarregados quando a planilha muda.
+
+### Execução local
+
 Instale as dependências:
 
 ```bash
@@ -34,6 +38,20 @@ python docs/Entrega_5/MVP/app.py
 ```
 
 Depois, acesse `http://127.0.0.1:8000`. Os filtros recalculam os indicadores e gráficos com base na planilha.
+
+### Deploy na Vercel
+
+O deploy é feito por uma Python Function em `api/index.py`. O arquivo `vercel.json` define a instalação das dependências, inclui a planilha tratada e roteia `/` e `/index.html` para a função dinâmica.
+
+Para vincular o projeto:
+
+1. Importe o repositório na Vercel.
+2. Use a raiz do repositório como Root Directory.
+3. Mantenha o Framework Preset como `Other`.
+4. Confirme que o projeto usa o `vercel.json` versionado no repositório.
+5. Faça o deploy.
+
+Não é necessário gerar `_site`, `data.json` ou qualquer versão estática. O CSS público fica em `public/static/dashboard.css`, e a aplicação dinâmica é servida pela função Python.
 
 ## 👥 4. Membros da Equipe e Papéis
 
