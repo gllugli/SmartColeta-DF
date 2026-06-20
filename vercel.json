@@ -2,7 +2,7 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "installCommand": "pip install -r requirements.txt",
   "functions": {
-    "api/index.py": {
+    "api/dashboard.py": {
       "includeFiles": "{docs/Entrega_3/Base_dados_SMART_tratada.xlsx,docs/Entrega_5/MVP/smartcoleta/**,public/static/**}",
       "memory": 1024
     }
@@ -10,12 +10,11 @@
   "rewrites": [
     {
       "source": "/",
-      "destination": "/api/index"
+      "destination": "/api/dashboard"
     },
     {
       "source": "/index.html",
-      "destination": "/api/index"
+      "destination": "/api/dashboard"
     }
   ]
 }
-

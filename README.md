@@ -41,7 +41,7 @@ Depois, acesse `http://127.0.0.1:8000`. Os filtros recalculam os indicadores e g
 
 ### Deploy na Vercel
 
-O deploy é feito por uma Python Function em `api/index.py`. O arquivo `vercel.json` define a instalação das dependências, inclui a planilha tratada e roteia `/` e `/index.html` para a função dinâmica.
+O deploy é feito por uma Python Function em `api/dashboard.py`. O arquivo `vercel.json` define a instalação das dependências, inclui a planilha tratada e roteia `/` e `/index.html` para a função dinâmica.
 
 Para vincular o projeto:
 

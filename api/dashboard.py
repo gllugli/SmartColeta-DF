@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import sys
+from http.server import BaseHTTPRequestHandler
 from pathlib import Path
 
 
@@ -13,6 +14,11 @@ if str(MVP_DIR) not in sys.path:
 from smartcoleta.server import DashboardHandler  # noqa: E402
 
 
-class handler(DashboardHandler):
+class handler(BaseHTTPRequestHandler):
     """Vercel Python Function entrypoint."""
 
+    do_GET = DashboardHandler.do_GET
+    _send_html = DashboardHandler._send_html
+    _send_static_file = DashboardHandler._send_static_file
+    _send_bytes = DashboardHandler._send_bytes
+    log_message = DashboardHandler.log_message
