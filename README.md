@@ -23,6 +23,19 @@ Para a primeira fase deste projeto, nosso foco é a pesquisa e análise de dados
 
 O MVP roda como um dashboard Python dinâmico. O servidor usa a planilha tratada em `docs/Entrega_3/Base_dados_SMART_tratada.xlsx`, aplica os filtros recebidos pela URL e renderiza os indicadores e gráficos no HTML. Os dados ficam em cache em memória por instância e são recarregados quando a planilha muda.
 
+### Arquitetura
+
+```text
+api/                            Entrada da Python Function da Vercel
+smartcoleta/               Pacote da aplicação dinâmica
+public/static/              CSS público do dashboard
+docs/Entrega_3/         Base bruta, base tratada, ETL e dicionário de dados
+docs/Entrega_*/         Entregáveis acadêmicos e materiais de apoio
+tests/                           Testes automatizados mínimos do dashboard
+```
+
+O pacote `smartcoleta` concentra o código executável da aplicação. A pasta `docs` fica reservada para documentação, entregáveis e bases usadas pelo projeto.
+
 ### Execução local
 
 Instale as dependências:
@@ -34,24 +47,24 @@ pip install -r requirements.txt
 Para executar:
 
 ```bash
-python docs/Entrega_5/MVP/app.py
+python app.py
+```
+
+Também é possível executar com:
+
+```bash
+python -m smartcoleta
 ```
 
 Depois, acesse `http://127.0.0.1:8000`. Os filtros recalculam os indicadores e gráficos com base na planilha.
 
-### Deploy na Vercel
+### Testes
 
-O deploy é feito por uma Python Function em `api/index.py`. O arquivo `vercel.json` define a instalação das dependências, inclui a planilha tratada e roteia `/` e `/index.html` para a função dinâmica.
+Execute os testes com:
 
-Para vincular o projeto:
-
-1. Importe o repositório na Vercel.
-2. Use a raiz do repositório como Root Directory.
-3. Mantenha o Framework Preset como `Other`.
-4. Confirme que o projeto usa o `vercel.json` versionado no repositório.
-5. Faça o deploy.
-
-Não é necessário gerar `_site`, `data.json` ou qualquer versão estática. O CSS público fica em `public/static/dashboard.css`, e a aplicação dinâmica é servida pela função Python.
+```bash
+python -m unittest
+```
 
 ## 👥 4. Membros da Equipe e Papéis
 

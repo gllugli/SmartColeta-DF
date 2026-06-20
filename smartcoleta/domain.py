@@ -51,23 +51,9 @@ def lot_from_category(category: object) -> str:
 
 
 def indicator_group(indicator: str) -> str:
-    if indicator == "Coleta Domiciliar (t)":
-        return "Domiciliar"
-    if indicator in {
-        "Coleta Seletiva - resíduo seletivo (t)",
-        "Coleta Seletiva - Rejeitos IRR (t)",
-    }:
-        return "Seletiva"
-    if indicator == "Coleta RCC PEV (t)":
-        return "RCC PEV"
-    if indicator == "Coleta Podas PEV (t)":
-        return "Podas PEV"
-    if indicator == "Coleta Volumosos PEV (t)":
-        return "Volumosos PEV"
-    if indicator == "Entulho Manual (t)":
-        return "Entulho Manual"
-    if indicator == "Entulho Mecanizado (t)":
-        return "Entulho Mecanizado"
+    for group, indicators in TYPE_TO_INDICATORS.items():
+        if indicator in indicators:
+            return group
     return indicator
 
 

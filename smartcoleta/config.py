@@ -5,9 +5,7 @@ from pathlib import Path
 
 
 PACKAGE_DIR = Path(__file__).resolve().parent
-APP_DIR = PACKAGE_DIR.parent
-DELIVERY_DIR = APP_DIR.parent
-PROJECT_ROOT = DELIVERY_DIR.parent.parent
+PROJECT_ROOT = PACKAGE_DIR.parent
 STATIC_DIR = PROJECT_ROOT / "public" / "static"
 DEFAULT_DATA_PATH = PROJECT_ROOT / "docs" / "Entrega_3" / "Base_dados_SMART_tratada.xlsx"
 DATA_PATH = Path(os.environ.get("SMARTCOLETA_DATA_PATH", DEFAULT_DATA_PATH)).expanduser()
@@ -126,50 +124,19 @@ LOT_REGIONS = {
     ],
 }
 
+def _tooltip_regions(regions: list[str]) -> list[str]:
+    expanded: list[str] = []
+    for region in regions:
+        if region == "SCIA/Estrutural":
+            expanded.extend(["SCIA", "Estrutural"])
+        elif region != "Sol Nascente/Pôr do Sol":
+            expanded.append(region)
+    return expanded
+
+
 TOOLTIP_LOT_REGIONS = {
-    "Lote I": [
-        "Arapoanga",
-        "Cruzeiro",
-        "Fercal",
-        "Itapoã",
-        "Lago Norte",
-        "Paranoá",
-        "Planaltina",
-        "Plano Piloto",
-        "Sobradinho",
-        "Sobradinho II",
-        "Sudoeste/Octogonal",
-        "São Sebastião",
-        "Varjão",
-    ],
-    "Lote II": [
-        "Taguatinga",
-        "Brazlândia",
-        "Ceilândia",
-        "Pôr do Sol",
-        "Sol Nascente",
-        "Samambaia",
-    ],
-    "Lote III": [
-        "Guará",
-        "SCIA",
-        "Estrutural",
-        "SIA",
-        "Águas Claras",
-        "Vicente Pires",
-        "Água Quente",
-        "Arniqueira",
-        "Candangolândia",
-        "Gama",
-        "Jardim Botânico",
-        "Lago Sul",
-        "Núcleo Bandeirante",
-        "Park Way",
-        "Recanto das Emas",
-        "Riacho Fundo",
-        "Riacho Fundo II",
-        "Santa Maria",
-    ],
+    lot: _tooltip_regions(regions)
+    for lot, regions in LOT_REGIONS.items()
 }
 
 REGION_TO_LOT = {

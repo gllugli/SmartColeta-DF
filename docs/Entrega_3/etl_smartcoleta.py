@@ -15,13 +15,14 @@ import pandas as pd
 # ------------------------------------------------------------
 # 1. Configurações iniciais
 # ------------------------------------------------------------
+BASE_DIR = Path(__file__).resolve().parent
 ARQUIVOS_ENTRADA_POSSIVEIS = [
-    Path("Base_dados_SMART_att.xlsx"), # Atualizado para buscar a base nova primeiro
-    Path("Base_dados_SMART_corrigida.xlsx"),
-    Path("Base_dados_SMART(1).xlsx"),
-    Path("Base_dados_SMART.xlsx"),
+    BASE_DIR / "Base_dados_SMART_att.xlsx", # Atualizado para buscar a base nova primeiro
+    BASE_DIR / "Base_dados_SMART_corrigida.xlsx",
+    BASE_DIR / "Base_dados_SMART(1).xlsx",
+    BASE_DIR / "Base_dados_SMART.xlsx",
 ]
-ARQUIVO_SAIDA = Path("Base_dados_SMART_tratada.xlsx")
+ARQUIVO_SAIDA = BASE_DIR / "Base_dados_SMART_tratada.xlsx"
 
 MESES = {
     "JAN": "01", "JANEIRO": "01", "FEV": "02", "FEVEREIRO": "02",
@@ -80,7 +81,7 @@ def localizar_arquivo_entrada():
     for caminho in ARQUIVOS_ENTRADA_POSSIVEIS:
         if caminho.exists():
             return caminho
-    candidatos = sorted(Path(".").glob("Base_dados_SMART*.xlsx"))
+    candidatos = sorted(BASE_DIR.glob("Base_dados_SMART*.xlsx"))
     candidatos = [c for c in candidatos if "tratada" not in c.name.lower()]
     if candidatos:
         return candidatos[0]

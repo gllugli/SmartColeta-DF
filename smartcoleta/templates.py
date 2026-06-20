@@ -3,7 +3,7 @@ from __future__ import annotations
 from typing import Iterable
 
 from .charts import collection_progress, metric_card, svg_bar_chart, svg_horizontal_bars, svg_line_chart
-from .config import DATA_PATH, LOT_OPTIONS, MONTHS, TYPE_TO_INDICATORS
+from .config import DATA_PATH, LOT_OPTIONS, MONTHS, REGION_TO_LOT, TYPE_TO_INDICATORS
 from .dashboard import build_dashboard_model
 from .data_loader import get_source_data
 from .filters import parse_selection
@@ -28,6 +28,11 @@ def render_dashboard(params: dict[str, list[str]] | None = None) -> str:
     year_options = [("Todos", "Todos")] + [(str(year), str(year)) for year in sorted(source.years, reverse=True)]
     month_options = [("Todos", "Todos")] + [(str(month), MONTHS[month]) for month in range(1, 13)]
     lot_options = [(lot, lot) for lot in LOT_OPTIONS]
+    region_options = [("Todas", "Todas")] + [
+        (region, region)
+        for region in source.regions
+        if selection.lot == "Todos" or REGION_TO_LOT.get(region) == selection.lot
+    ]
     type_options = [("Todas", "Todas")] + [(value, value) for value in TYPE_TO_INDICATORS]
 
     ranking_rows = "".join(
@@ -85,6 +90,10 @@ def render_dashboard(params: dict[str, list[str]] | None = None) -> str:
                 <select id="lote" name="lote">{option_list(lot_options, selection.lot)}</select>
             </div>
             <div class="field">
+                <label for="regiao">Região</label>
+                <select id="regiao" name="regiao">{option_list(region_options, selection.region)}</select>
+            </div>
+            <div class="field">
                 <label for="tipo">Tipo de Coleta</label>
                 <select id="tipo" name="tipo">{option_list(type_options, selection.collection_type)}</select>
             </div>
@@ -128,7 +137,7 @@ def render_dashboard(params: dict[str, list[str]] | None = None) -> str:
             </article>
             <article class="content-card tall">
                 <h2>Resumo da localidade líder</h2>
-                <span class="card-context">A localidade líder respeita os filtros de lote, ano, mês e tipo</span>
+                <span class="card-context">A localidade líder respeita os filtros de lote, região, ano, mês e tipo</span>
                 <div class="summary">
                     {summary_rows}
                 </div>

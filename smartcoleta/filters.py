@@ -39,11 +39,15 @@ def parse_selection(params: dict[str, list[str]], source: SourceData) -> Selecti
         if month not in months_available:
             month = max(months_available) if months_available else None
 
-    region = "Todas"
-
     lot = first_query_value(params, "lote") or "Todos"
     if lot not in LOT_OPTIONS:
         lot = "Todos"
+
+    region = first_query_value(params, "regiao") or "Todas"
+    if region != "Todas" and region not in source.regions:
+        region = "Todas"
+    if lot != "Todos" and region != "Todas" and REGION_TO_LOT.get(region) != lot:
+        region = "Todas"
 
     collection_type = first_query_value(params, "tipo") or "Todas"
     if collection_type != "Todas" and collection_type not in TYPE_TO_INDICATORS:

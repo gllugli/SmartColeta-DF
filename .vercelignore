@@ -4,7 +4,14 @@ _site/
 __pycache__/
 **/__pycache__/
 **/*.pyc
-docs/**/*.pdf
-docs/**/*.docx
+tests/
+requirements-analysis.txt
+docs/Entrega_1/
+docs/Entrega_2/
+docs/Entrega_4/
+docs/Entrega_5/
+docs/Entrega_3/*.pdf
+docs/Entrega_3/*.md
+docs/Entrega_3/*.json
+docs/Entrega_3/etl_smartcoleta.py
 docs/Entrega_3/Base_dados_SMART_att.xlsx
-

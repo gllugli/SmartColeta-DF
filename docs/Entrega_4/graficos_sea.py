@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
@@ -8,7 +10,7 @@ import matplotlib.pyplot as plt
 sns.set_style('whitegrid')
 sns.set_palette('magma') 
 
-file_path = 'Base_dados_SMART_tratada.xlsx'
+file_path = Path(__file__).resolve().parents[1] / 'Entrega_3' / 'Base_dados_SMART_tratada.xlsx'
 df_mensal = pd.read_excel(file_path, sheet_name='base_mensal_consolidada')
 df_equip = pd.read_excel(file_path, sheet_name='equipamentos_por_ra')
 df_custos = pd.read_excel(file_path, sheet_name='custos_operacao_pev')
